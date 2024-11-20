@@ -56,24 +56,18 @@ public class Aufgabe7 {
     
     // Iterative Version -> handgeschrieben und basierend auf ChatGPT Version
     private static void drawCirclesIterHand(CodeDraw myDrawObj, int y, int radius, int num){
+        int x = 256;
         int currentY = y;
-        int currentNum = num;
-        while (currentNum > 0) {
-            myDrawObj.setColor(new Color(255 - currentNum * 30, 255 - currentNum * 30, 0));
-            int x = 256;
-            if (currentNum == num){
+        for (int i = 0; i <= num; i++) {
+            myDrawObj.setColor(new Color(255 - (num - i) * 30, 255 - (num - i) * 30, 0));
+            currentY = y;
+            while (currentY <= myDrawObj.getHeight()) {
                 myDrawObj.fillCircle(x, currentY, radius);
+                currentY += radius * 2;
+
             }
-            else{
-                int tmpY = currentY;
-                while (tmpY <= myDrawObj.getHeight()){
-                    myDrawObj.fillCircle(x, tmpY, radius);
-                    tmpY += radius * 2;
-                }
-            }
-            currentNum--;
             radius /= 2;
-            currentY -= radius;
+            y -= radius;
         }
     }
 
